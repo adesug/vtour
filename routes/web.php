@@ -48,9 +48,9 @@ Route::get('/login-logout',[AuthController::class,'proces_logout'])->name('logou
 
 // admin
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function() {
 
-    // ==================== wisata
+;
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'checkAdminOrSuperAdmin'], 'as' => 'admin.'], function() {
 
     Route::get('/panelAdmin/dashboard', [DashboardController::class, 'index'])->name('adminDashboard');
     Route::get('/panelAdmin/tour',[touristController::class,'index'])->name('adminWisata');
@@ -75,41 +75,63 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::post('/panelAdmin/tour/panoramaConnect/destroy/{id}',[panoramaConnectController::class,'destroy'])->name('adminWisataPanoramaConnectDestroy');
     Route::post('/panelAdmin/tour/panoramaConnect/edit',[panoramaConnectController::class,'editTour'])->name('adminWisataPanoramaConnectEdit');
     Route::post('/panelAdmin/tour/panoramaConnect/update/{id}',[panoramaConnectController::class,'update'])->name('adminWisataPanoramaConnectUpdate');
-
-    
-    // =============== sejarah
+    Route::get('/panelAdmin/dashboard', [DashboardController::class, 'index'])->name('adminDashboard');
 
     Route::get('/panelAdmin/history',[historyController::class,'index'])->name('adminSejarah');
+    Route::get('/panelAdmin/history/detail/{id}',[historyController::class,'show'])->name('adminSejarahShow');
+
+    Route::get('/panelAdmin/history/panorama',[panoramaController::class,'indexHistory'])->name('adminSejarahPanorama');
+    Route::get('/panelAdmin/history/panoramaConnect',[panoramaConnectController::class,'indexHistory'])->name('adminSejarahPanoramaConnect');
+    Route::get('/panelAdmin/culinary',[culinaryController::class,'index'])->name('adminKuliner');
+    Route::get('/panelAdmin/culinary/detail/{id}',[culinaryController::class,'show'])->name('adminKulinerShow');
+
+
+});
+// Route::group(['prefix' => 'adminwisata','middleware' => ['auth', 'checkRole:adminwisata'], 'as' => 'admin.'], function () {
+
+// });
+Route::group(['prefix' => 'superadmin','middleware' => ['auth','checkRole:superadmin'], 'as' => 'admin.'], function() {
+   
     Route::get('/panelAdmin/history/create',[historyController::class,'create'])->name('adminSejarahCreate');
     Route::post('/panelAdmin/history/store',[historyController::class,'store'])->name('adminSejarahStore');
-    Route::get('/panelAdmin/history/detail/{id}',[historyController::class,'show'])->name('adminSejarahShow');
+    
     Route::post('/panelAdmin/history/destroy/{id}',[historyController::class,'destroy'])->name('adminSejarahDestroy');
     Route::get('/panelAdmin/history/edit/{id}',[historyController::class,'edit'])->name('adminSejarahEdit');
     Route::post('/panelAdmin/history/update/{id}',[historyController::class,'update'])->name('adminSejarahUpdate');
-    
-    Route::get('/panelAdmin/history/panorama',[panoramaController::class,'indexHistory'])->name('adminSejarahPanorama');
+
+
+   
     Route::get('/panelAdmin/history/panorama/create',[panoramaController::class,'createHistory'])->name('adminSejarahPanoramaCreate');
     Route::post('/panelAdmin/history/panorama/store',[panoramaController::class,'storeHistory'])->name('adminSejarahPanoramaStore');
     Route::post('/panelAdmin/history/panorama/destroy/{id}',[panoramaController::class,'destroy'])->name('adminSejarahPanoramaDestroy');
     Route::post('/panelAdmin/history/panorama/edit',[panoramaController::class,'editHistory'])->name('adminSejarahaPanoramaEdit');
     Route::post('/panelAdmin/history/panorama/update/{id}',[panoramaController::class,'update'])->name('adminSejarahPanoramaUpdate');
-    
-    Route::get('/panelAdmin/history/panoramaConnect',[panoramaConnectController::class,'indexHistory'])->name('adminSejarahPanoramaConnect');
+
     Route::get('/panelAdmin/history/panoramaConnect/create',[panoramaConnectController::class,'createHistory'])->name('adminSejarahaPanoramaConnectCreate');
     Route::post('/panelAdmin/history/panoramaConnect/store',[panoramaConnectController::class,'storeHistory'])->name('adminSejarahPanoramaConnectStore');
     Route::post('/panelAdmin/history/panoramaConnect/destroy/{id}',[panoramaConnectController::class,'destroy'])->name('adminSejarahaPanoramaConnectDestroy');
     Route::post('/panelAdmin/history/panoramaConnect/edit',[panoramaConnectController::class,'editHistory'])->name('adminSejarahPanoramaConnectEdit');
     Route::post('/panelAdmin/history/panoramaConnect/update/{id}',[panoramaConnectController::class,'update'])->name('adminSejarahPanoramaConnectUpdate');
 
-    // ======= kuliner
-
-    Route::get('/panelAdmin/culinary',[culinaryController::class,'index'])->name('adminKuliner');
+   
     Route::get('/panelAdmin/culinary/create',[culinaryController::class,'create'])->name('adminKulinerCreate');
     Route::post('/panelAdmin/culinary/store',[culinaryController::class,'store'])->name('adminKulinerStore');
-    Route::get('/panelAdmin/culinary/detail/{id}',[culinaryController::class,'show'])->name('adminKulinerShow');
     Route::post('/panelAdmin/culinary/destroy/{id}',[culinaryController::class,'destroy'])->name('adminKulinerDestroy');
     Route::get('/panelAdmin/culinary/edit/{id}',[culinaryController::class,'edit'])->name('adminKunlinerEdit');
     Route::post('/panelAdmin/culinary/update/{id}',[culinaryController::class,'update'])->name('adminKulinerUpdate');
+
+});
+Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function() {
+
+   
+
+  
+    
+  
+    
+   
+
+  
 });
 
 

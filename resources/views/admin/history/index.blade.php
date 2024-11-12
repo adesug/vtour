@@ -50,7 +50,9 @@
                             <h3 class="card-title">Daftar Data Sejarah</h3>
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
+                                @if(Auth::check() && Auth::user()->role == 'superadmin')
                                     <button id="createButton" class="btn btn-success btn-sm">Tambah Data Sejarah</button>
+                                @endif 
                                 </div>
                             </div>
                         </div>

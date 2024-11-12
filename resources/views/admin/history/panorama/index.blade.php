@@ -50,7 +50,10 @@
                             <h3 class="card-title">Daftar Data Panorama</h3>
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
-                                    <button id="createButton" class="btn btn-success btn-sm">Tambah Data</button>
+                                @if(Auth::check() && Auth::user()->role == 'superadmin')
+                                <button id="createButton" class="btn btn-success btn-sm">Tambah Data</button>
+
+                                @endif
                                 </div>
                             </div>
                         </div>
