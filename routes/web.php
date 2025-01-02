@@ -26,14 +26,14 @@ Use App\Http\Controllers\AuthController;
 // });
 Route::get('/',[PageUserController::class,'index'])->name('dashboardAdmin');
 // detail
-Route::get('/gallery/tour/detail/{id}',[touristController::class,'show'])->name('detailGalleryTour');
-Route::get('/gallery/history/detail/{id}',[historyController::class,'show'])->name('detailGalleryHistory');
-Route::get('/gallery/culinary/detail/{id}',[culinaryController::class,'show'])->name('detailGalleryCulinary');
+// Route::get('/gallery/tour/detail/{id}',[touristController::class,'show'])->name('detailGalleryTour');
+// Route::get('/gallery/history/detail/{id}',[historyController::class,'show'])->name('detailGalleryHistory');
+// Route::get('/gallery/culinary/detail/{id}',[culinaryController::class,'show'])->name('detailGalleryCulinary');
 
 // explore more
-Route::get('/galleryTourist',[PageUserController::class,'exploreMoreWisata'])->name('galleryTourist');
-Route::get('/galleryHistory',[PageUserController::class,'exploreMoreSejarah'])->name('galleryHistory');
-Route::get('/galleryCulinery',[PageUserController::class,'exploreMoreKuliner'])->name('galleryCulinery');
+// Route::get('/galleryTourist',[PageUserController::class,'exploreMoreWisata'])->name('galleryTourist');
+// Route::get('/galleryHistory',[PageUserController::class,'exploreMoreSejarah'])->name('galleryHistory');
+// Route::get('/galleryCulinery',[PageUserController::class,'exploreMoreKuliner'])->name('galleryCulinery');
 
 // detail
 Route::get('/detail',function () {
@@ -45,6 +45,8 @@ Route::get('/login',[AuthController::class,'index'])->name('login');
 Route::post('/login-proses',[AuthController::class,'proces_login'])->name('login_proses');
 Route::get('/login-logout',[AuthController::class,'proces_logout'])->name('logout_proses');
 
+Route::get('/register',[AuthController::class,'register'])->name('register');
+Route::post('/register-proces',[AuthController::class,'proces_register'])->name('register_proces');
 
 // admin
 
@@ -132,6 +134,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
    
 
   
+});
+Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], function() {
+    Route::get('/gallery/tour/detail/{id}',[touristController::class,'show'])->name('detailGalleryTour');
+    Route::get('/gallery/history/detail/{id}',[historyController::class,'show'])->name('detailGalleryHistory');
+    Route::get('/gallery/culinary/detail/{id}',[culinaryController::class,'show'])->name('detailGalleryCulinary');
+
+    // explore more
+    Route::get('/galleryTourist',[PageUserController::class,'exploreMoreWisata'])->name('galleryTourist');
+    Route::get('/galleryHistory',[PageUserController::class,'exploreMoreSejarah'])->name('galleryHistory');
+    Route::get('/galleryCulinery',[PageUserController::class,'exploreMoreKuliner'])->name('galleryCulinery');
 });
 
 

@@ -42,10 +42,10 @@
         <button type="submit" class="btn btn-primary w-100">Login</button>
         {{-- <div class="mt-3 text-center">
             <a href="#">Lupa password ?</a>
-        </div>
-        <div class="mt-3 text-center">
-            <a href="registerPage.html">Register</a>
         </div> --}}
+        <div class="mt-3 text-center">
+            <a href="{{route('register')}}">Register</a>
+        </div>
     </form>
 </div>
 

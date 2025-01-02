@@ -100,14 +100,18 @@
 
                                                         <form action="{{route('admin.adminSejarahDestroy',$item->id)}}" method="POST">
                                                             <div class="btn-group btn-group-sm">
+                                                            @if(Auth::check() && Auth::user()->role == 'superadmin')
                                                                 <a class="btn btn-warning edit" href="{{route('admin.adminSejarahEdit',$item->id)}}" 
                                                                     ><i class="fas fa-pen"></i>
                                                                     Edit</a>
+                                                            @endif
                                                                 <a href="{{route('admin.adminSejarahShow',$item->id)}}" class="btn btn-info detail"><i class="fas fa-eye"></i>
                                                                     Detail</a>
+                                                            @if(Auth::check() && Auth::user()->role == 'superadmin')
                                                                 @csrf
                                                                 <a class="btn btn-danger  delete-confirm"><i class="fas fa-trash">
                                                                         Hapus</i></a>
+                                                            @endif
                                                             </div>
                                                         </form>
                                                     </td>

@@ -24,7 +24,7 @@ class CheckAdminOrSuperAdmin
 
     // Cek apakah user memiliki role admin atau superadmin
     $user = Auth::user();
-    if ($user->role == 'adminwisata' || $user->role == 'superadmin') {
+    if ($user->role == 'adminwisata' || $user->role == 'superadmin' || $user->role == 'user') {
         return $next($request); // Lanjutkan jika role sesuai
     }
 
