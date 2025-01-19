@@ -94,9 +94,19 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#scrollspytentang">Tentang Kami</a>
                     </li>
+                    @if(Auth::user() != null )
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{route('logout_proses')}}">Log Out</a>
+                    </li>
+
+                    <span class="nav-link text-warning">{{Auth::user()->name}}</span>
+
+                    @else
+
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{route('login')}}">Login</a>
                     </li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -161,7 +171,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $item->name }}</h5>
                         <p class="card-text">{{ \Illuminate\Support\Str::limit($item->description, 200, '...') }}</p>
-                        <a href="/gallery/tour/detail/{{$item->id}}" class="btn btn-primary">Lihat Detail</a>
+                        <a href="/user/gallery/tour/detail/{{$item->id}}" class="btn btn-primary">Lihat Detail</a>
                     </div>
                 </div>
             </div>
@@ -169,7 +179,7 @@
         </div>
         <div class="d-flex justify-content-end mb-4">
             <!-- Right-aligned subtle button -->
-            <a href="{{route('galleryTourist')}}" class="btn btn-light btn-sm text-muted">Explore Lainnya</a>
+            <a href="{{route('user.galleryTourist')}}" class="btn btn-light btn-sm text-muted">Explore Lainnya</a>
             <div id="scrollspysejarah"></div>
         </div>
         <h2 class="my-4 text-center">Gallery Sejarah</h2> <!-- Title Added -->
@@ -186,7 +196,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $item->name }}</h5>
                         <p class="card-text">{{ \Illuminate\Support\Str::limit($item->description, 200, '...') }}</p>
-                        <a href="/gallery/history/detail/{{$item->id}}" class="btn btn-primary">Lihat Detail</a>
+                        <a href="/user/gallery/history/detail/{{$item->id}}" class="btn btn-primary">Lihat Detail</a>
                     </div>
                 </div>
             </div>
@@ -195,7 +205,7 @@
         </div>
         <div class="d-flex justify-content-end mb-4">
             <!-- Right-aligned subtle button -->
-            <a href="/galleryHistory" class="btn btn-light btn-sm text-muted">Explore Lainnya</a>
+            <a href="/user/galleryHistory" class="btn btn-light btn-sm text-muted">Explore Lainnya</a>
             <div id="scrollspykuliner"></div>
         </div>
 
@@ -213,7 +223,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $item->name }}</h5>
                         <p class="card-text">{{ \Illuminate\Support\Str::limit($item->description, 200, '...') }}</p>
-                        <a href="/gallery/culinary/detail/{{$item->id}}" class="btn btn-primary">Lihat Detail</a>
+                        <a href="/user/gallery/culinary/detail/{{$item->id}}" class="btn btn-primary">Lihat Detail</a>
                     </div>
                 </div>
             </div>
@@ -222,7 +232,7 @@
         </div>
         <div class="d-flex justify-content-end mb-4">
             <!-- Right-aligned subtle button -->
-            <a href="{{route('galleryCulinery')}}" class="btn btn-light btn-sm text-muted">Selengkapnya</a>
+            <a href="{{route('user.galleryCulinery')}}" class="btn btn-light btn-sm text-muted">Explore Lainnya</a>
         </div>
     </div>
     <!-- footer -->

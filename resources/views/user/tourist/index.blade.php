@@ -84,9 +84,19 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#scrollspytentang">Tentang Kami</a>
                     </li>
+                    @if(Auth::user() != null )
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="loginPage.html">Login</a>
+                        <a class="nav-link text-white" href="{{route('logout_proses')}}">Log Out</a>
                     </li>
+
+                    <span class="nav-link text-warning">{{Auth::user()->name}}</span>
+
+                    @else
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{route('login')}}">Login</a>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>
